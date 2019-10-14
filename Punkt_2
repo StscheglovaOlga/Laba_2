@@ -1,0 +1,91 @@
+package Zadanie_2;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayDeque;
+import java.util.Stack;
+public class Punkt_2 {
+	private static String fname = "Задание 2.txt";
+	public static void main(String[] args) {
+		System.out.println("Стек");
+		ReadS();
+	    System.out.println(" ");
+		System.out.println("Очередь");
+		ReadO();
+	}
+	public static void ReadS() {
+		File file = new File(fname);
+		try (BufferedReader br = 
+				new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));){
+            String vvod;
+            Stack <String> person = new Stack();
+            Stack <String> readost = new Stack();
+            while ((vvod = br.readLine()) != null){
+                person.push(vvod);
+            }
+            System.out.println("Люди, больше 40 лет:");
+            while (!person.isEmpty()) {
+            	String y=person.pop();
+            	String d="1968";
+            	String t="1955";
+                if (y.contains(t) || y.contains(d)) {
+            	    System.out.println(y);    
+                }else {
+                    readost.push(y);
+                }
+            }
+            String[] tu=new String [readost.size()];
+            System.out.println(" ");
+            System.out.println("Люди, меньше 40 лет:");
+            int o=readost.size();
+            for (int i=0; i<o; i++) {
+                tu[i]=readost.pop();	
+            }
+            for (int i=0; i<tu.length; i++) {
+            	System.out.println(tu[i]);	
+            }
+            
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }	
+	}
+	public static void ReadO() {
+		File file = new File(fname);
+		try (BufferedReader br = 
+				new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));){
+			String vvod;
+			ArrayDeque <String> person = new ArrayDeque<>();
+			ArrayDeque <String> readost = new ArrayDeque<>();
+			while ((vvod = br.readLine()) != null) {
+			    person.add(vvod);	 
+			}
+			System.out.println("Люди, больше 40 лет:");
+            while (!person.isEmpty()) {
+            	String y=person.pollFirst();
+            	String d="1968";
+            	String t="1955";
+                if (y.contains(t) || y.contains(d)) {
+            	    System.out.println(y);    
+                }else {
+                    readost.add(y);
+                }
+            }    
+            System.out.println(" ");
+            System.out.println("Люди, меньше 40 лет:");
+            while (!readost.isEmpty()) {
+                System.out.println(readost.pollLast());
+            } 
+		} catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+	}
+}
