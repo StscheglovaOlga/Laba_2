@@ -1,0 +1,32 @@
+package Zadanie_2;
+import java.util.Scanner;
+import java.util.Stack;
+public class Punkt_6 {
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Введите кол-во точек");
+		int n = sc.nextInt();
+		System.out.println("Введите координаты точек");
+		Stack<Tchk> list = new Stack<Tchk>();
+		for(int i = 0; i < n ; i++){
+			Tchk buf = new Tchk(sc.nextInt(),sc.nextInt());
+		    list.push(buf);
+		}
+		System.out.println("Между какими точками надо найти расстояние?");
+		for(int i = 0; i < n; i++){
+		    System.out.println("Номер "+i+") "+list.get(i).x+" "+list.get(i).y);
+		}
+		int a = sc.nextInt(); 
+		int b = sc.nextInt();
+		double distance = Math.sqrt(Math.pow(list.get(a).x - list.get(b).x, 2) + Math.pow(list.get(a).y - list.get(b).y, 2)) ;
+		System.out.println(distance);
+	}
+}
+class Tchk{
+    int x;
+    int y;
+    public Tchk(int x, int y){
+        this.x = x;
+        this.y = y;
+    }
+}
