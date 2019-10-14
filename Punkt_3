@@ -1,0 +1,27 @@
+package Zadanie_2;
+import java.util.Stack;
+public class Punkt_3 {
+	public static void main(String[] args) {
+		String stroka="(1+15*{26-x/[p+9]})";
+		int y=0;
+		Stack<Character> stack = new Stack();
+        for (int i=0; i<stroka.length(); i++) {
+            if (stroka.charAt(i)=='(' || stroka.charAt(i)=='[' || stroka.charAt(i)=='{') {
+            	stack.push(stroka.charAt(i));
+            }else {
+            	if ((stroka.charAt(i)==')' && stack.peek()=='(') || (stroka.charAt(i)==']' && stack.peek()=='[') || (stroka.charAt(i)=='}' && stack.peek()=='{')) {
+            	    stack.pop();
+            	}else {
+            		if (stroka.charAt(i)==')' || stroka.charAt(i)==']' || stroka.charAt(i)=='}') {
+            		    y++;
+            		}
+            	}
+            }
+        }
+        if (y!=0) {
+        	System.out.println("Баланс нарушен");
+        }else {
+        	System.out.println("Баланс не нарушен");
+        }
+	}
+}
