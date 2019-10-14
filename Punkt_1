@@ -1,0 +1,70 @@
+# Laba_2
+package Zadanie_2;
+import java.util.Scanner;
+import java.util.ArrayDeque;
+import java.util.Stack;
+public class Punkt_1 {
+	public static void main(String[] args) {
+		Scanner input = new Scanner(System.in);	
+		int x=input.nextInt();
+		Stack y=Stack(x);
+		Stack h=Stack(x);
+		WriteStack(y);
+		System.out.println("  ");
+		WriteObrStack(h);
+		System.out.println("  ");
+	    WriteOchered(x);
+	    System.out.println("  ");
+	    WriteObrOchered(x);
+	}
+	public static Stack Stack(int a) {
+		Stack<Integer> stack = new Stack();
+		while (a>0) {
+		    stack.push(a%10);
+		    a=a/10;
+		}
+		return stack;
+	}
+	public static void WriteObrStack(Stack h) {
+		Stack<Integer> stack = h;
+		int u=stack.size();
+		int[] t=new int [u];
+		System.out.println("Стек. Вывод числа в обратном порядке: ");
+		for (int i=u-1; i>-1; i--) {
+		    t[i]=stack.pop();    	
+		}
+		for (int i=0; i<u; i++) {
+			System.out.print(t[i]);
+		}
+	}
+	public static void WriteStack(Stack h) {
+		Stack<Integer> stack = h;
+		int u=stack.size();
+		System.out.println("Стек. Вывод числа в прямом порядке: ");
+		for (int i=0; i<u; i++) {	
+		    System.out.print(stack.pop());
+		}
+	}
+	public static void WriteOchered(int p) {
+		ArrayDeque <Integer> deque = new ArrayDeque<>();
+		while (p>0) {
+		    deque.add(p%10);
+		    p=p/10;
+		}
+	    System.out.println("Очередь. Вывод числа в прямом порядке:");
+	    while (!deque.isEmpty()) {
+	    	System.out.print(deque.pollLast());
+	    }
+	}
+	public static void WriteObrOchered(int p) {
+		ArrayDeque <Integer> deque = new ArrayDeque<>();
+		while (p>0) {
+		    deque.add(p%10);
+		    p=p/10;
+		}
+	    System.out.println("Очередь. Вывод числа в обратном порядке:");
+	    while (!deque.isEmpty()) {
+	    	System.out.print(deque.pollFirst());
+	    }	
+	}
+}
